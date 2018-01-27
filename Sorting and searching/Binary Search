@@ -1,0 +1,39 @@
+/*
+Binary Search
+1.5
+Given a sorted array arr[] of n elements, write a function to search a given element x in arr[].
+
+A simple approach is to do linear search.The time complexity of above algorithm is O(n). Another approach to perform the same task is using
+Binary Search.
+
+Binary Search: Search a sorted array by repeatedly dividing the search interval in half. Begin with an interval covering the whole array.
+If the value of the search key is less than the item in the middle of the interval, narrow the interval to the lower half. Otherwise narrow
+it to the upper half. Repeatedly check until the value is found or the interval is empty/
+*/
+
+
+#include <iostream>
+
+using namespace std;
+int BinarySearch(int arr[], int l, int r, int x)
+{
+    if(r>=l) 
+    {
+        int mid = l + (r-1)/2;
+        if(arr[mid]==x) return mid;
+        if(arr[mid]>x) return BinarySearch(arr,l,mid-1,x);
+        if(arr[mid]<x) return BinarySearch(arr,mid+1,r,x);
+    }
+    return -1;
+}
+
+int main()
+{
+    int arr[]={1,2,4,5};
+    int n= sizeof(arr)/sizeof(arr[0]);
+    int x = 4;
+    int result = BinarySearch(arr,0,n-1,x);
+    cout<<result;
+
+    return 0;
+}
