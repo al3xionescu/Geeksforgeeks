@@ -1,0 +1,66 @@
+/*
+We have a graph with n nodes and m edges. We want to find out the minimum distance from node 1 to nodes 2,3,..., n-1, n. 
+*/
+
+#include <cstdio>
+const int maxn = 50001;
+const int inf = 1<<30;
+FILE *in = fopen("dijkstra.in","r"), *out=fopen("dijkstra.out","w");
+struct graf {
+    int nod,cost;
+    graf *next;
+};
+int n,m;
+graf *a[maxn];
+int d[maxn],q[maxn];
+void add(int where, int what, int cost) {
+    graf *q= new graf;
+    q->nod = what;
+    q->cost = cost;
+    q->next = a[where];
+    a[where] =q;
+}
+void read() {
+    fscanf(in, "%d %d", &n, &m);
+    int x, y, z;
+    for ( int i = 1; i <= m; ++i )
+    {
+        fscanf(in, "%d %d %d", &x, &y, &z);
+        add(x, y, z);
+    }
+}
+void dijkstra() {
+    for(int i=2;i<=n;i++)
+        d[i]=inf;
+    int min,pmin = 0;
+     for ( int i = 1; i <= n; ++i )
+    {
+        min = inf;
+
+        for ( int j = 1; j <= n; ++j )
+            if ( d[j] < min && !q[j] )
+                min = d[j], pmin = j;
+
+        q[pmin] = 1;
+
+        graf *t = a[pmin];
+
+        while ( t )
+        {
+            if ( d[ t->nod ] > d[pmin] + t->cost )
+                d[ t->nod ] = d[pmin] + t->cost;
+
+            t = t->next;
+        }
+    }
+}
+int main()
+{
+    read();
+    dijkstra();
+    for(int i=2;i<=n;i++)
+        fprintf(out,"%d ",d[i]==inf?0:d[i]);
+    fprintf(out, "\n");
+
+    return 0;
+}
