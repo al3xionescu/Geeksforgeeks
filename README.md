@@ -1,2 +1,2 @@
 # Geeksforgeeks
-Algorithms and other things from Geeksforgeeks
+Algorithms, Data Structures and more from Geeksforgeeks
