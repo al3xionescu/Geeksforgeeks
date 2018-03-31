@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool areParanthesisBalanced(char expr[]) {
+    stack<char> s;
+    char a,b,c;
+    for (int i=0;i<strlen(expr);i++) {
+        if(expr[i]=='('||expr[i]=='['||expr[i]=='{') {
+            s.push(expr[i]);
+           }
+        else {
+            switch(expr[i]) {
+            case ')':
+                a=s.top();
+                s.pop();
+                if(a=='{'||a=='[')
+                    cout<<"Not Balanced";
+                break;
+            case '}':
+                b=s.top();
+                s.pop();
+                if(b=='('||b=='[')
+                    cout<<"Not Balanced";
+                break;
+            case ']':
+                c=s.top();
+                s.pop();
+                if(c==')'||c=='}')
+                    cout<<"Not Balanced";
+                break;
+            }
+        }
+    }
+    if(s.empty())
+        return true;
+    else return false;
+}
+
+int main()
+{
+    char expr[] = "{()}[]";
+    if (areParanthesisBalanced(expr))
+        cout<<"Balanced";
+    else
+        cout<<"Not Balanced";
+    return 0;
+}
