@@ -1,0 +1,49 @@
+C/C++:
+
+#include<stdio.h>
+int add(int x,int y){
+    while(y!=0){
+        int carry = x&y;
+        x=x^y;
+        y=carry<<1;
+    }
+    return x;
+}
+int main()
+{
+    printf("%d", add(7,5));
+    return 0;
+}
+
+PY:
+
+def add(x, y):
+    while (y != 0):
+        carry = x & y
+        x = x ^ y
+        y = carry << 1
+    return x
+print(add(7, 5))
+
+JAVA:
+
+import java.io.*;
+ 
+class GFG 
+{
+    static int add(int x, int y)
+    {
+        while (y != 0) 
+        {
+            int carry = x & y;
+            x = x ^ y;
+            y = carry << 1;
+        }
+        return x;
+    }
+     
+    public static void main(String arg[]) 
+    {
+        System.out.println(add(15, 32));
+    }
+}
