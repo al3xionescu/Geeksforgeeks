@@ -1,0 +1,23 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+
+int main()
+{
+    char    abc[27];
+    char    *ptr = abc;
+    strncpy(abc, "abcdefghij",10);
+    cout<<abc<<'\n';    // abcdefghij
+    cout<<*abc<<'\n';    // a
+    cout<<abc[2]<<'\n';  // c
+    cout<<&abc[3]<<'\n';  // defghij
+    cout<<abc+4<<'\n';     // efghij
+    cout<<*(abc+5)<<'\n';   // f 
+    cout<<abc[10]<<'\n';   // 
+    cout<<abc[11]<<'\n';   //p
+    cout<<ptr<<'\n';   // abcdefghij
+    cout<<&ptr<<'\n';  // 0x69fed0
+    
+    return 0;
+}
+
