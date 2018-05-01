@@ -1,1 +1,47 @@
+/*
+The shown code is built to print out the current date, but for some reason, it doesn’t.
+You are required to figure out the reason.
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
+  
+char *get_date()
+{
+    char    buf[80];
+    time_t  now = time(0);
+    strcpy(buf, ctime(&now));
+    return buf;
+}
+ 
+int main(int argc, char *argv[])
+{
+    char *date = get_date();
+    printf("date=%s\n", date);
+    return 0;
+}
+
+------------------------
+
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
+#include <stdlib.h>
+
+char *get_date()
+{
+    char* buf;
+    buf = (char *) malloc(80*sizeof(char));
+    time_t  now = time(0);
+    strcpy(buf, ctime(&now));
+    return buf;
+}
+
+int main(int argc, char *argv[])
+{
+    char *date = get_date();
+    printf("date=%s\n", date);
+    return 0;
+}
 
