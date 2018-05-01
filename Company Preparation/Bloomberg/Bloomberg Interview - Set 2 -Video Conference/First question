@@ -6,15 +6,15 @@ int main()
     char abc[27];
     char *ptr = abc;
     strcpy(abc, "abcdefgxyz");
-    cout<<abc<<'\n';
-    cout<<*abc<<'\n';
-    cout<<abc[2]<<'\n';
-    cout<<&abc[3]<<'\n';
-    cout<<abc+4<<'\n';
-    cout<<*(abc+5)+20000<<'\n';
-    cout<<abc[10]<<'\n';
-    cout<<abc[12]<<'\n';
-    cout<<&ptr;
+    cout<<abc<<'\n';         //abcdefgxyz
+    cout<<*abc<<'\n';        //a
+    cout<<abc[2]<<'\n';      //c
+    cout<<&abc[3]<<'\n';     //defgxyz
+    cout<<abc+4<<'\n';       //efgxyz
+    cout<<*(abc+5)+20000<<'\n';  //20102
+    cout<<abc[10]<<'\n';         //'\0'
+    cout<<abc[12]<<'\n';         //╚
+    cout<<&ptr;                  //0x69fed0
 
     return 0;
 }
