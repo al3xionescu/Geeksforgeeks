@@ -1,0 +1,20 @@
+#include <string.h>
+#include<iostream>
+using namespace std;
+int main()
+{
+    char abc[27];
+    char *ptr = abc;
+    strcpy(abc, "abcdefgxyz");
+    cout<<abc<<'\n';
+    cout<<*abc<<'\n';
+    cout<<abc[2]<<'\n';
+    cout<<&abc[3]<<'\n';
+    cout<<abc+4<<'\n';
+    cout<<*(abc+5)+20000<<'\n';
+    cout<<abc[10]<<'\n';
+    cout<<abc[12]<<'\n';
+    cout<<&ptr;
+
+    return 0;
+}
