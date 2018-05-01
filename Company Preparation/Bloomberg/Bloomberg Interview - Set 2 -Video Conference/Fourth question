@@ -1,0 +1,68 @@
+/*
+Reverse a string in place.
+*/
+ 
+#include<iostream>
+#include<cstring>
+using namespace std;
+void reverse_word(char* str, int size){
+    int p1, p2;
+    p1=0;
+    p2=size-1;
+    while(p1<p2){
+        char tmp = str[p1];
+        str[p1] = str[p2];
+        str[p2] = tmp;
+        p1++;
+        p2--;
+    }
+}
+
+int main()
+{
+    char str[] = "dar";
+    int n = strlen(str);
+    reverse_word(str,n);
+    cout<<str;
+    return 0;
+}
+
+/*
+Use this code to reverse words within a sentence, in place.
+*/
+
+#include<iostream>
+#include<cstring>
+using namespace std;
+void reverse_word(char* str, int size){
+    int p1, p2;
+    p1=0;
+    p2=size-1;
+    while(p1<p2){
+        char tmp = str[p1];
+        str[p1] = str[p2];
+        str[p2] = tmp;
+        p1++;
+        p2--;
+    }
+}
+void reverse_sentence(char *str, int size){
+    int p1;
+    p1=0;
+    reverse_word(str, size);
+    for(int i=0;i<size;i++){
+        p1=i;
+        while(p1<size && str[p1]!=' ')
+            p1++;
+        reverse_word(str+i*sizeof(char), p1-i);
+        i=p1;
+    }
+}
+int main()
+{
+    char str[] = "hello world";
+    int n = strlen(str);
+    reverse_sentence(str,n);
+    cout<<str;
+    return 0;
+}
