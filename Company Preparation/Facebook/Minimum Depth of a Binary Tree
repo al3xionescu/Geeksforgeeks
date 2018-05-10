@@ -1,0 +1,8 @@
+int minDepth(Node *node)
+{
+    if(node==NULL) return 0;
+    if(node->left==NULL && node->right==NULL) return 1;
+    if(!node->left) return minDepth(node->right)+1;
+    if(node->right) return minDepth(node->left)+1;
+    return min(minDepth(node->left), minDepth(node->right))+1;
+}
