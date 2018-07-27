@@ -46,3 +46,5 @@ class BinaryTree{
 		
 	}
 }
+
+Time Complexity: O(n^2)
