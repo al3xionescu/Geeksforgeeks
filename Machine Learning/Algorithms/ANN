@@ -1,0 +1,67 @@
+An Artificial Neural Network (ANN) is an information processing paradigm that is inspired by the brain. ANNs, like people, learn by example.
+An ANN is configured for a specific application, such as pattern recognition or data classification, through a learning process. Learning 
+largely involves adjustments to the synaptic connections that exist between the neurons.
+The training process consists of the following steps:
+
+Forward Propagation:
+Take the inputs, multiply by the weights (just use random numbers as weights)
+Let Y = WiIi = W1I1+W2I2+W3I3
+Pass the result through a sigmoid formula to calculate the neuron’s output. The Sigmoid function is used to normalise the result between 0 
+and 1:
+1/1 + e-y
+Back Propagation
+Calculate the error i.e the difference between the actual output and the expected output. Depending on the error, adjust the weights by 
+multiplying the error with the input and again with the gradient of the Sigmoid curve:
+Weight += Error Input Output (1-Output) ,here Output (1-Output) is derivative of sigmoid curve.
+
+from numpy import *
+ 
+class NeuralNet(object):
+    def __init__(self):
+        # Generate random numbers
+        random.seed(1)
+ 
+        # Assign random weights to a 3 x 1 matrix,
+        self.synaptic_weights = 2 * random.random((3, 1)) - 1
+ 
+    # The Sigmoid function
+    def __sigmoid(self, x):
+        return 1 / (1 + exp(-x))
+ 
+    # The derivative of the Sigmoid function.
+    # This is the gradient of the Sigmoid curve.
+    def __sigmoid_derivative(self, x):
+        return x * (1 - x)
+ 
+    # Train the neural network and adjust the weights each time.
+    def train(self, inputs, outputs, training_iterations):
+        for iteration in range(training_iterations):
+ 
+            # Pass the training set through the network.
+            output = self.learn(inputs)
+ 
+            # Calculate the error
+            error = outputs - output
+ 
+            # Adjust the weights by a factor
+            factor = dot(inputs.T, error * self.__sigmoid_derivative(output))
+            self.synaptic_weights += factor
+ 
+    # The neural network thinks.
+    def learn(self, inputs):
+        return self.__sigmoid(dot(inputs, self.synaptic_weights))
+ 
+if __name__ == "__main__":
+ 
+    #Initialize
+    neural_network = NeuralNet()
+ 
+    # The training set.
+    inputs = array([[0, 1, 1], [1, 0, 0], [1, 0, 1]])
+    outputs = array([[1, 0, 1]]).T
+ 
+    # Train the neural network
+    neural_network.train(inputs, outputs, 10000)
+ 
+    # Test the neural network with a test example.
+    print (neural_network.learn(array([1, 0, 1])))
